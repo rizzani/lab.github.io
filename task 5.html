@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+    <style>
+        .calculator-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .calculator-container input[type="text"] {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="calculator-container">
+    <form id="calculatorForm">
+        <fieldset>
+            <legend>Simple Calculator</legend>
+            <label for="value1">Value 1:</label>
+            <input type="text" id="value1" name="value1"><br><br>
+
+            <label>Operation:</label><br>
+            <input type="radio" id="add" name="operation" value="+">
+            <label for="add">+</label><br>
+            <input type="radio" id="subtract" name="operation" value="-">
+            <label for="subtract">-</label><br>
+            <input type="radio" id="multiply" name="operation" value="*">
+            <label for="multiply">*</label><br>
+            <input type="radio" id="divide" name="operation" value="/">
+            <label for="divide">/</label><br><br>
+
+            <label for="value2">Value 2:</label>
+            <input type="text" id="value2" name="value2"><br><br>
+
+            <label for="result">Result:</label>
+            <input type="text" id="result" name="result" readonly><br><br>
+
+            <button type="button" onclick="calculate()">Calculate</button>
+            <button type="reset">Reset</button>
+        </fieldset>
+    </form>
+</div>
+
+<script>
+    function calculate() {
+        value1 = parseFloat(document.getElementById('value1').value);
+        value2 = parseFloat(document.getElementById('value2').value);
+        operation = document.querySelector('input[name="operation"]:checked');
+
+        if (isNaN(value1) || isNaN(value2) || !operation) {
+            alert('Please enter valid numbers and select an operation.');
+            return;
+        }
+
+        let result;
+        switch (operation.value) {
+            case '+':
+                result = value1 + value2;
+                break;
+            case '-':
+                result = value1 - value2;
+                break;
+            case '*':
+                result = value1 * value2;
+                break;
+            case '/':
+                result = value2 !== 0 ? value1 / value2 : 'Error (div by 0)';
+                break;
+            default:
+                result = 'Invalid operation';
+        }
+
+        document.getElementById('result').value = result;
+    }
+</script>
+
+</body>
+</html>

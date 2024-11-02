@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Arrays Display</h1>
+
+<button id="serialButton">Show Serially</button>
+<button id="sideBySideButton">Show Side by Side</button>
+
+<table id="arrayTable">
+    <thead>
+    <tr>
+        <th>Subscript</th>
+        <th>n1 Value</th>
+        <th>n2 Value</th>
+    </tr>
+    </thead>
+    <tbody id="arrayOutput"></tbody>
+</table>
+
+<script>
+    const n1 = [0, 1, 2, 3, 4];
+    const n2 = [0, 1, 2, 3, 4];
+    const outputElement = document.getElementById("arrayOutput");
+
+    function showSerially() {
+        outputElement.innerHTML = '';
+        for (let i = 0; i < n1.length; i++) {
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${i}</td><td>${n1[i]}</td><td></td>`; // n2 value left empty
+            outputElement.appendChild(row);
+            const row2 = document.createElement("tr");
+            row2.innerHTML = `<td>${i}</td><td></td><td>${n2[i]}</td>`; // n1 value left empty
+            outputElement.appendChild(row2);
+        }
+    }
+
+    function showSideBySide() {
+        outputElement.innerHTML = '';
+        for (let i = 0; i < n1.length; i++) {
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${i}</td><td>${n1[i]}</td><td>${n2[i]}</td>`;
+            outputElement.appendChild(row);
+        }
+    }
+
+    document.getElementById("serialButton").addEventListener("click", showSerially);
+    document.getElementById("sideBySideButton").addEventListener("click", showSideBySide);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Guess the Number Game</h1>
+<p>Guess a number between 1 and 10</p>
+<input type="number" id="guessInput" placeholder="Your Guess">
+<button id="guessButton">Submit Guess</button>
+
+<div id="result"></div>
+
+<script>
+    let randomNumber = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
+
+    function playGuessTheNumber() {
+        const userGuess = parseInt(document.getElementById("guessInput").value);
+        let resultMessage = '';
+
+        if (userGuess < 1 || userGuess > 10 || isNaN(userGuess)) {
+            resultMessage = "Please enter a valid number between 1 and 10.";
+        } else if (userGuess < randomNumber) {
+            resultMessage = "Too low! Try again.";
+        } else if (userGuess > randomNumber) {
+            resultMessage = "Too high! Try again.";
+        } else {
+            resultMessage = "Congratulations! You guessed the correct number!";
+        }
+
+        resultMessage += `<br>The correct number was: ${randomNumber}`;
+        document.getElementById("result").innerHTML = resultMessage;
+    }
+
+    document.getElementById("guessButton").addEventListener("click", playGuessTheNumber);
+</script>
+
+</body>
+</html>

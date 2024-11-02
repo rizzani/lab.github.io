@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personalized JavaScript Message</title>
+    <style>
+        body, h1 {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #colorPicker {
+            margin-top: 20px;
+        }
+
+        input[type="color"] {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="partA">
+    <h1 id="defaultMessage">JavaScript Programming is Easy</h1>
+</div>
+
+<div id="partB" style="display: none;">
+    <h1 id="personalizedMessage"></h1>
+</div>
+
+<div>
+    <button id="loadButton">Enter Your Name</button>
+    <button id="colorButton" style="display: none;">Select Color</button>
+    <button id="sizeButton" style="display: none;">Set Font Size </button>
+</div>
+
+<div id="colorPicker" style="display: none;">
+    <label for="colorInput">Choose a color:</label>
+    <input type="color" id="colorInput">
+    <button id="applyColorButton" style="display: none;">Apply Color</button>
+</div>
+
+<script>
+    let firstName = "";
+
+    function askUserName() {
+        firstName = prompt("Please enter your first name:");
+
+        if (firstName) {
+            document.getElementById("partA").style.display = "none";
+            document.getElementById("partB").style.display = "block";
+
+            const personalizedHeading = document.getElementById("personalizedMessage");
+            personalizedHeading.textContent = `${firstName}, says: JavaScript Programming is Easy`;
+
+            document.getElementById("colorButton").style.display = "inline";
+            document.getElementById("sizeButton").style.display = "inline";
+        }
+    }
+
+    function showColorPicker() {
+        document.getElementById("colorPicker").style.display = "block";
+        document.getElementById("applyColorButton").style.display = "inline";
+    }
+
+    function setMessageColor() {
+        const colorInput = document.getElementById("colorInput").value;
+        const personalizedHeading = document.getElementById("personalizedMessage");
+        personalizedHeading.style.color = colorInput;
+    }
+
+    function setFontSize() {
+        const size = prompt("Enter the font size in pixels (e.g., 20 for 20px):");
+
+        const personalizedHeading = document.getElementById("personalizedMessage");
+
+        if (size) {
+            personalizedHeading.style.fontSize = `${size}px`;
+        }
+    }
+
+    document.getElementById("loadButton").addEventListener("click", askUserName);
+    document.getElementById("colorButton").addEventListener("click", showColorPicker);
+    document.getElementById("applyColorButton").addEventListener("click", setMessageColor);
+    document.getElementById("sizeButton").addEventListener("click", setFontSize);
+</script>
+
+</body>
+</html>

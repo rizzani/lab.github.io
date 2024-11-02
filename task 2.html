@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        iframe {
+            margin-top: 20px;
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Find Min and Max of Three Numbers</h1>
+<input type="number" id="num1" placeholder="Number 1">
+<input type="number" id="num2" placeholder="Number 2">
+<input type="number" id="num3" placeholder="Number 3">
+<button id="calculateButton">Calculate</button>
+
+<div id="result"></div>
+
+<iframe id="codeFrame"></iframe>
+
+<script>
+    function findMinimum(a, b, c) {
+        return Math.min(a, b, c);
+    }
+
+    function findMaximum(a, b, c) {
+        let max = a;
+        if (b > max) {
+            max = b;
+        }
+        if (c > max) {
+            max = c;
+        }
+        return max;
+    }
+
+    document.getElementById("calculateButton").addEventListener("click", function() {
+        num1 = parseFloat(document.getElementById("num1").value);
+        num2 = parseFloat(document.getElementById("num2").value);
+        num3 = parseFloat(document.getElementById("num3").value);
+
+        min = findMinimum(num1, num2, num3);
+        max = findMaximum(num1, num2, num3);
+
+        document.getElementById("result").innerHTML = `Minimum: ${min}, Maximum: ${max}`;
+    });
+
+    code = `
+        function findMinimum(a, b, c) {
+            return Math.min(a, b, c);
+        }
+
+        function findMaximum(a, b, c) {
+            let max = a;
+            if (b > max) {
+                max = b;
+            }
+            if (c > max) {
+                max = c;
+            }
+            return max;
+        }
+    `;
+
+    codeFrame = document.getElementById("codeFrame").contentWindow.document;
+    codeFrame.open();
+    codeFrame.write('<pre>' + code + '</pre>');
+    codeFrame.close();
+</script>
+
+</body>
+</html>
